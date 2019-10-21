@@ -12,11 +12,11 @@ let messageTwo = document.querySelector('#message-2');
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Stop the weather web page from refreshing.
     const location = search.value;
-    
+
     messageOne.textContent = 'Loading....'
     messageTwo.textContent = " "
 
-    fetch('http://localhost:3000/weather?address=' + encodeURIComponent(location)).then((response) => {
+    fetch('/weather?address=' + encodeURIComponent(location)).then((response) => {
         response.json().then((forecastData) => {
             if(forecastData.error){
                 messageOne.textContent = forecastData.error;
