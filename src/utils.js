@@ -37,7 +37,7 @@ const forecast = (latitude,longitude,callback) => {
 
     request({url, json:true},(error,response)=>{
 
-            const{summary} = response.body.daily.data[0];
+            const{summary,temperatureHigh,temperatureLow} = response.body.daily.data[0];
             const {temperature,precipProbability} = response.body.currently;
 
         if(error){
@@ -47,7 +47,7 @@ const forecast = (latitude,longitude,callback) => {
             callback('Unable to get location.Please try again.', undefined);
 
         }else{
-            callback(undefined,summary + "It is currently " + temperature + " degress out." + "There is " + precipProbability + " % chance of rain." )
+            callback(undefined,summary + "It is currently " + temperature + " degress out." + "There is " + precipProbability + " % chance of rain." + "The temperature high and low is " + temperatureHigh + " and " + temperatureLow + " degress Celsius respectively." )
 
             // temperature: response.body.currently.temperature,
             // precipitation:response.body.currently.precipProbability,
